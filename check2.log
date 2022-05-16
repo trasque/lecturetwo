@@ -1,0 +1,14 @@
+Starting audit...
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:1:1: Missing a Javadoc comment. [MissingJavadocType]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:51:3: Missing a Javadoc comment. [MissingJavadocMethod]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:77:3: Missing a Javadoc comment. [MissingJavadocMethod]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:104:3: Missing a Javadoc comment. [MissingJavadocMethod]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:137:3: Missing a Javadoc comment. [MissingJavadocMethod]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:153:3: Missing a Javadoc comment. [MissingJavadocMethod]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:154:31: '(' is preceded with whitespace. [MethodParamPad]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:154:40: '&&' should be on a new line. [OperatorWrap]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:155:40: '&&' should be on a new line. [OperatorWrap]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:156:40: '&&' should be on a new line. [OperatorWrap]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:157:31: '(' is preceded with whitespace. [MethodParamPad]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Order.java:165:3: Missing a Javadoc comment. [MissingJavadocMethod]
+Audit done.
