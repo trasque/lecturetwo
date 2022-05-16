@@ -2,7 +2,7 @@
 
 「受注情報」を扱うクラスをつくり、必要な情報が揃っているときにのみ「出荷」メソッドを実行できるプログラムとしました。出荷が行われた場合、static変数として用意した伝票番号がひとつずつ加算されます。加算された伝票番号を、インスタンスに保存します。
 
-`checkstyle` を実施しました。 `check.log` はメインメソッドのある `LectureTwo.java` の結果です。 `check2.log` は `Order.java` の結果です。 Java Doc の対応はしていないのでそのままにしています。
+`checkstyle` を実施しました。 `check.log` はメインメソッドのある `LectureTwo.java` の結果です。 `check2.log` は `Order.java` の結果です。 Java Doc の対応はしていないのでそのままにしています。使用したファイルは `checkstyle-10.2-all.jar` です。
 
 また、 `Order.java` 内の `canShipped()` メソッドにある条件分岐を見やすくしようとしましたが、`checkstyle` には指摘されてしまいました。
 
@@ -16,7 +16,7 @@
 - 送り先住所
 - 伝票番号
 
-また、クラスには `static int ship` （伝票）という変数があります。
+また、クラスには `static int slip` （伝票）という変数があります。
 
 slip は 0 を初期値とし、ship() が正しく実行されるたびに 1 ずつ加算されます。
 
