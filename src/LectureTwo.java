@@ -31,6 +31,8 @@ public class LectureTwo {
     System.out.println("発送可能？：" + negi.canShipped());
     System.out.println("[発送を試みる]");
     negi.ship();
+    System.out.println("[未発送の状態で伝票番号を読み取ろうとする]");
+    negi.getSlipNo();
 
     // 4) 住所などを十分埋めて発送処理をする
     System.out.println("\n=====[例4]=====");
@@ -39,6 +41,7 @@ public class LectureTwo {
     negi.ship();
     System.out.println("[ねぎの情報を表示]");
     negi.displayInfo();
+    System.out.println("発送した時の伝票番号は" + negi.getSlipNo());
 
     // 5) 複数の品目をリストにし、一気に表示する
     System.out.println("\n=====[例5]=====");
