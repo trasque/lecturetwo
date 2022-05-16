@@ -17,7 +17,7 @@ public class Order {
   //        4) address
   //    メソッド
   //      getter/setter : それぞれ用意
-  //      displayinfo   : 現在設定されている内容をきれいに表示する
+  //      displayInfo   : 現在設定されている内容をきれいに表示する
   //      calcFare      : 運賃を表示 quantity と unitPrice が初期値でなければ掛け算して返す
   //      canShipped    : slip/slipNo以外のメンバ変数に初期値がなければ true
   //      ship          : canShipped が true なら slip++ し slipNo に記録後「発送しました」と slipNo を出す
