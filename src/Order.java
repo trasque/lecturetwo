@@ -55,47 +55,6 @@ public class Order {
     this.slipNo = 0;
   }
 
-  public String getGoods() {
-    return this.goods;
-  }
-
-  public int getQuantity() {
-    return this.quantity;
-  }
-
-  public int getUnitPrice() {
-    return this.unitPrice;
-  }
-
-  public String getAddress() {
-    return this.address;
-  }
-
-  public int getSlipNo() {
-    if (this.slipNo == 0) {
-      System.out.println("発送されていません");
-      return 0;
-    } else {
-      return this.slipNo;
-    }
-  }
-
-  public void setGoods(String goods) {
-    this.goods = goods;
-  }
-
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
-
-  public void setUnitPrice(int unitPrice) {
-    this.unitPrice = unitPrice;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
   // 設定されている情報を整理して出す
   public void displayInfo() {
     if (this.goods.equals("none")) {
@@ -167,5 +126,46 @@ public class Order {
       System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
       this.displayInfo();
     }
+  }
+
+  public String getGoods() {
+    return this.goods;
+  }
+
+  public int getQuantity() {
+    return this.quantity;
+  }
+
+  public int getUnitPrice() {
+    return this.unitPrice;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public int getSlipNo() {
+    if (this.slipNo == 0) {
+      System.out.println("発送されていません");
+      return 0;
+    } else {
+      return this.slipNo;
+    }
+  }
+
+  public void setGoods(String goods) {
+    this.goods = goods;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
+
+  public void setUnitPrice(int unitPrice) {
+    this.unitPrice = unitPrice;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
   }
 }
