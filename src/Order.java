@@ -2,15 +2,14 @@ public class Order {
   //::::::::::
   //  受注クラス
   //    メンバ変数（コンストラクタ初期値）
-  //      伝票No  : static int slip    : 0 (static)
   //      商品    : String goods       : "none"
   //      数量    : int    quantity    : 0
   //      単価    : int    unitPrice   : 0
   //      発送先  : String address     : "none"
-  //      発送伝票: int slipNo         : 0
+  //      発送伝票: String slipNo      : "none"
   //    コンストラクタ
-  //      引数なし: 全てのメンバを初期値とする（slip/slipNo 以外）
-  //      引数の順は以下の通りとし、足りない分は初期値（slip/slipNo以外）
+  //      引数なし: 全てのメンバを初期値とする（slipNo 以外）
+  //      引数の順は以下の通りとし、足りない分は初期値（slipNo以外）
   //        1) goods
   //        2) quantity
   //        3) unitPrice
@@ -18,18 +17,16 @@ public class Order {
   //    メソッド
   //      getter/setter : それぞれ用意
   //      displayInfo   : 現在設定されている内容をきれいに表示する
-  //      calcFare      : 運賃を表示 quantity と unitPrice が初期値でなければ掛け算して返す
-  //      canShipped    : slip/slipNo以外のメンバ変数に初期値がなければ true
-  //      ship          : canShipped が true なら slip++ し slipNo に記録後「発送しました」と slipNo を出す
-  //                      canShipped が false なら「発送情報が足りません」として終わる
+  //      calcFare      : 運賃を計算する（数量 x 単価）
+  //      canShipped    : 出荷可能かを判定する
+  //      ship          : 出荷可能なら伝票番号を発行して記録
   //::::::::::
 
-  private static int slip = 0;
   private String goods;
   private int quantity;
   private int unitPrice;
   private String address;
-  private int slipNo;
+  private String slipNo;
 
   public Order() {
     this("none", 0, 0, "none");
@@ -52,7 +49,7 @@ public class Order {
     this.quantity = quantity;
     this.unitPrice = unitPrice;
     this.address = address;
-    this.slipNo = 0;
+    this.slipNo = "none";
   }
 
   // 設定されている情報を整理して出す
@@ -81,7 +78,7 @@ public class Order {
       System.out.println("住所：" + this.address);
     }
 
-    if (this.slipNo == 0) {
+    if (this.slipNo.equals("none")) {
       System.out.println("伝票：未発行");
     } else {
       System.out.println("伝票：No" + this.slipNo);
@@ -119,8 +116,7 @@ public class Order {
   // 発送が可能な状態なら伝票番号を発行する
   public void ship() {
     if (this.canShipped() == true) {
-      Order.slip++;
-      this.slipNo = Order.slip;
+      this.slipNo = Slip.genSlipNo();
       System.out.println(this.calcFare() + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
     } else {
       System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
@@ -144,10 +140,10 @@ public class Order {
     return this.address;
   }
 
-  public int getSlipNo() {
-    if (this.slipNo == 0) {
+  public String getSlipNo() {
+    if (this.slipNo.equals("none")) {
       System.out.println("発送されていません");
-      return 0;
+      return "none";
     } else {
       return this.slipNo;
     }
