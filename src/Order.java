@@ -24,7 +24,6 @@ public class Order {
   //                      canShipped が false なら「発送情報が足りません」として終わる
   //::::::::::
 
-  // member variables
   private static int slip = 0;
   private String goods;
   private int quantity;
@@ -32,7 +31,6 @@ public class Order {
   private String address;
   private int slipNo;
 
-  // constructor
   public Order() {
     this("none", 0, 0, "none");
   }
@@ -57,51 +55,7 @@ public class Order {
     this.slipNo = 0;
   }
 
-  // methods
-  // -getter
-  public String getGoods() {
-    return this.goods;
-  }
-
-  public int getQuantity() {
-    return this.quantity;
-  }
-
-  public int getUnitPrice() {
-    return this.unitPrice;
-  }
-
-  public String getAddress() {
-    return this.address;
-  }
-
-  public int getSlipNo() {
-    if (this.slipNo == 0) {
-      System.out.println("発送されていません");
-      return 0;
-    } else {
-      return this.slipNo;
-    }
-  }
-
-  // -setter
-  public void setGoods(String goods) {
-    this.goods = goods;
-  }
-
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
-
-  public void setUnitPrice(int unitPrice) {
-    this.unitPrice = unitPrice;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  // displayInfo() 設定されている情報を整理して出す
+  // 設定されている情報を整理して出す
   public void displayInfo() {
     if (this.goods.equals("none")) {
       System.out.println("品名：設定なし");
@@ -134,7 +88,7 @@ public class Order {
     }
   }
 
-  // calcFare() 運賃を表示して返す
+  // 運賃を表示して返す
   public int calcFare() {
     if (this.quantity == 0) {
       System.out.println("数量が設定されていません");
@@ -150,7 +104,7 @@ public class Order {
     return this.quantity * this.unitPrice;
   }
 
-  // canShipped() 発送可能な状態かを返す
+  // 発送可能な状態かを返す
   public boolean canShipped() {
     if (!this.goods.   equals ("none") &&
         this.quantity  !=       0      &&
@@ -162,7 +116,7 @@ public class Order {
     }
   }
 
-  // ship() 発送が可能な状態なら static slip を++ して伝票番号とする
+  // 発送が可能な状態なら伝票番号を発行する
   public void ship() {
     if (this.canShipped() == true) {
       Order.slip++;
@@ -172,5 +126,46 @@ public class Order {
       System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
       this.displayInfo();
     }
+  }
+
+  public String getGoods() {
+    return this.goods;
+  }
+
+  public int getQuantity() {
+    return this.quantity;
+  }
+
+  public int getUnitPrice() {
+    return this.unitPrice;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public int getSlipNo() {
+    if (this.slipNo == 0) {
+      System.out.println("発送されていません");
+      return 0;
+    } else {
+      return this.slipNo;
+    }
+  }
+
+  public void setGoods(String goods) {
+    this.goods = goods;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
+
+  public void setUnitPrice(int unitPrice) {
+    this.unitPrice = unitPrice;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
   }
 }
