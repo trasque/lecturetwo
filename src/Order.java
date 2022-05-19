@@ -55,22 +55,6 @@ public class Order {
     this.slipNo = 0;
   }
 
-  // 運賃を表示して返す
-  public int calcFare() {
-    if (this.quantity == 0) {
-      System.out.println("数量が設定されていません");
-      return 0;
-    }
-
-    if (this.unitPrice == 0) {
-      System.out.println("単価が設定されていません");
-      return 0;
-    }
-
-    System.out.println("運賃は" + (this.quantity * this.unitPrice) + "円です");
-    return this.quantity * this.unitPrice;
-  }
-
   // 発送可能な状態かを返す
   public boolean canShipped() {
     if (!this.goods.   equals ("none") &&
@@ -88,7 +72,7 @@ public class Order {
     if (this.canShipped() == true) {
       Order.slip++;
       this.slipNo = Order.slip;
-      System.out.println(this.calcFare() + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
+      System.out.println(/* this.calcFare() + */ "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
     } else {
       System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
       this.displayInfo();

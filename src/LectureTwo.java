@@ -16,12 +16,14 @@ public class LectureTwo {
     //    改めてcalcFare() を実行してみる
     System.out.println("\n=====[例2]=====");
     System.out.println("[一部引数を指定し、運賃メソッドを使う]");
+    System.out.println("[運賃インスタンスを生成する]");
     System.out.println("[不足した設定値で計算]");
     Order suika = new Order("すいか", 5);
-    suika.calcFare();
+    Fare tokyo = new Fare(1.1, "東京", 200);
+    System.out.println(tokyo.calcFare(suika));
     System.out.println("[単価を100円にして計算]");
     suika.setUnitPrice(100);
-    suika.calcFare();
+    System.out.println(tokyo.calcFare(suika));
 
     // 3) 住所以外を設定して発送可能かを表示する
     System.out.println("\n=====[例3]=====");
