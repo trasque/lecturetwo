@@ -55,39 +55,6 @@ public class Order {
     this.slipNo = 0;
   }
 
-  // 設定されている情報を整理して出す
-  public void displayInfo() {
-    if (this.goods.equals("none")) {
-      System.out.println("品名：設定なし");
-    } else {
-      System.out.println("品名：" + this.goods);
-    }
-
-    if (this.quantity == 0) {
-      System.out.println("数量：設定なし");
-    } else {
-      System.out.println("数量：" + this.quantity);
-    }
-
-    if (this.unitPrice == 0) {
-      System.out.println("単価：設定なし");
-    } else {
-      System.out.println("単価：" + this.unitPrice);
-    }
-
-    if (this.address.equals("none")) {
-      System.out.println("住所：設定なし");
-    } else {
-      System.out.println("住所：" + this.address);
-    }
-
-    if (this.slipNo == 0) {
-      System.out.println("伝票：未発行");
-    } else {
-      System.out.println("伝票：No" + this.slipNo);
-    }
-  }
-
   // 運賃を表示して返す
   public int calcFare() {
     if (this.quantity == 0) {
@@ -125,6 +92,39 @@ public class Order {
     } else {
       System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
       this.displayInfo();
+    }
+  }
+
+  // 設定されている情報を整理して出す
+  public void displayInfo() {
+    if (this.goods.equals("none")) {
+      System.out.println("品名：設定なし");
+    } else {
+      System.out.println("品名：" + this.goods);
+    }
+
+    if (this.quantity == 0) {
+      System.out.println("数量：設定なし");
+    } else {
+      System.out.println("数量：" + this.quantity);
+    }
+
+    if (this.unitPrice == 0) {
+      System.out.println("単価：設定なし");
+    } else {
+      System.out.println("単価：" + this.unitPrice);
+    }
+
+    if (this.address.equals("none")) {
+      System.out.println("住所：設定なし");
+    } else {
+      System.out.println("住所：" + this.address);
+    }
+
+    if (this.slipNo == 0) {
+      System.out.println("伝票：未発行");
+    } else {
+      System.out.println("伝票：No" + this.slipNo);
     }
   }
 
