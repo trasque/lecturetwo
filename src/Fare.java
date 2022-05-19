@@ -10,12 +10,14 @@ public class Fare {
     this.farePerLoad = 200;
   } 
 
-  public int calcFare(Order order) {
+  public Order calcFare(Order order) {
     if (!validateOrder(order)) {
-      return 0;
+      order.setLoadFare(0);
+      return order;
     }
 
-    return Math.round(((this.farePerLoad * order.getQuantity() + order.getUnitPrice()) * consumptionTax));
+    order.setLoadFare(Math.round(((this.farePerLoad * order.getQuantity() + order.getUnitPrice()) * consumptionTax)));
+    return order;
   }
 
   private boolean validateOrder(Order order) {

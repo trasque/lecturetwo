@@ -6,6 +6,7 @@ public class Order {
   //      商品    : String goods       : "none"
   //      数量    : int    quantity    : 0
   //      単価    : int    unitPrice   : 0
+  //      送料    : int    loadFare    : 0
   //      発送先  : String address     : "none"
   //      発送伝票: int slipNo         : 0
   //    コンストラクタ
@@ -18,7 +19,6 @@ public class Order {
   //    メソッド
   //      getter/setter : それぞれ用意
   //      displayInfo   : 現在設定されている内容をきれいに表示する
-  //      calcFare      : 運賃を表示 quantity と unitPrice が初期値でなければ掛け算して返す
   //      canShipped    : slip/slipNo以外のメンバ変数に初期値がなければ true
   //      ship          : canShipped が true なら slip++ し slipNo に記録後「発送しました」と slipNo を出す
   //                      canShipped が false なら「発送情報が足りません」として終わる
@@ -28,6 +28,7 @@ public class Order {
   private String goods;
   private int quantity;
   private int unitPrice;
+  private int loadFare;
   private String address;
   private int slipNo;
 
@@ -52,6 +53,7 @@ public class Order {
     this.quantity = quantity;
     this.unitPrice = unitPrice;
     this.address = address;
+    this.loadFare = 0;
     this.slipNo = 0;
   }
 
@@ -124,6 +126,10 @@ public class Order {
     return this.unitPrice;
   }
 
+  public int getLoadFare() {
+    return this.loadFare;
+  }
+
   public String getAddress() {
     return this.address;
   }
@@ -147,6 +153,10 @@ public class Order {
 
   public void setUnitPrice(int unitPrice) {
     this.unitPrice = unitPrice;
+  }
+
+  public void setLoadFare(int loadFare) {
+    this.loadFare = loadFare;
   }
 
   public void setAddress(String address) {
