@@ -1,0 +1,4 @@
+Starting audit...
+[WARN] /home/trasque/raisetech/lecturetwo/src/Slip.java:4:1: Missing a Javadoc comment. [MissingJavadocType]
+[WARN] /home/trasque/raisetech/lecturetwo/src/Slip.java:10:3: Missing a Javadoc comment. [MissingJavadocMethod]
+Audit done.
