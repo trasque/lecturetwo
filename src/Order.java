@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Order {
   //::::::::::
   //  受注クラス
@@ -60,7 +62,8 @@ public class Order {
         this.quantity  !=       0      &&
         this.unitPrice !=       0      &&
         this.loadFare  !=       0      &&
-        !this.address. equals ("none")) {
+        !this.address. equals ("none") &&
+        this.slipNo.   equals ("none")) {
       return true;
     }
     return false;
@@ -72,7 +75,7 @@ public class Order {
       this.slipNo = Slip.genSlipNo();
       System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
     } else {
-      System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
+      System.out.println("＜＜出荷できません：以下を確認してください＞＞");
       this.displayInfo();
     }
   }
@@ -86,14 +89,50 @@ public class Order {
     if (this.unitPrice != 0)          display[2] = String.valueOf(this.unitPrice);
     if (this.loadFare != 0)           display[3] = String.valueOf(this.loadFare);
     if (!this.address.equals("none")) display[4] = this.address;
-    if (!this.slipNo.equals("none"))  display[5] = this.slipNo;
+    if (!this.slipNo.equals("none"))  display[5] = this.slipNo + "【出荷済】";
 
-    System.out.println("品名: " + display[0]);
-    System.out.println("数量: " + display[1]);
-    System.out.println("単価: " + display[2]);
-    System.out.println("運賃: " + display[3]);
-    System.out.println("発送: " + display[4]);
+    System.out.print("品名: " + display[0] + " / ");
+    System.out.print("数量: " + display[1] + " / ");
+    System.out.print("単価: " + display[2] + " / ");
+    System.out.print("運賃: " + display[3] + " / ");
+    System.out.print("発送: " + display[4] + " / ");
     System.out.println("伝票: " + display[5]);
+  }
+
+  // 不足している情報を入力する
+  public void setOrderInfo() {
+    Scanner settingIntScanner = new Scanner(System.in);
+    Scanner settingStringScanner = new Scanner(System.in);
+    int settingInt = 0;
+    String settingString = "none";
+
+    this.displayInfo();
+    if (this.goods.equals("none")) {
+      System.out.print(">> 品名を設定 -> ");
+      settingString = settingStringScanner.nextLine();
+      this.goods = settingString;
+    }
+    if (this.quantity == 0) {
+      System.out.print(">> 数量を設定 -> ");
+      settingInt = settingIntScanner.nextInt();
+      this.quantity = settingInt;
+    }
+    if (this.unitPrice == 0) {
+      System.out.print(">> 単価を設定 -> ");
+      settingInt = settingIntScanner.nextInt();
+      this.unitPrice = settingInt;
+    }
+    if (this.address.equals("none")) {
+      System.out.print(">> 発送先を設定 -> ");
+      settingString = settingStringScanner.nextLine();
+    }
+    if (this.quantity != 0 && this.unitPrice != 0 && !this.address.equals("none")) {
+      System.out.print(">> 運賃計算が可能です 計算しますか？(1:する / 0:しない) -> ");
+      settingInt = settingIntScanner.nextInt();
+      this.loadFare = 999; // 運賃計算メソッドが治るまでコレ
+    }
+    System.out.println(">> 受注情報入力完了");
+    this.displayInfo();
   }
 
   public String getGoods() {
