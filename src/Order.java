@@ -79,41 +79,21 @@ public class Order {
 
   // 設定されている情報を整理して出す
   public void displayInfo() {
-    if (this.goods.equals("none")) {
-      System.out.println("品名：設定なし");
-    } else {
-      System.out.println("品名：" + this.goods);
-    }
+    String[] display = {"設定なし", "設定無し", "設定無し", "未計算", "設定無し", "未発行"};
 
-    if (this.quantity == 0) {
-      System.out.println("数量：設定なし");
-    } else {
-      System.out.println("数量：" + this.quantity);
-    }
+    if (!this.goods.equals("none"))   display[0] = this.goods;
+    if (this.quantity != 0)           display[1] = String.valueOf(this.quantity);
+    if (this.unitPrice != 0)          display[2] = String.valueOf(this.unitPrice);
+    if (this.loadFare != 0)           display[3] = String.valueOf(this.loadFare);
+    if (!this.address.equals("none")) display[4] = this.address;
+    if (!this.slipNo.equals("none"))  display[5] = this.slipNo;
 
-    if (this.unitPrice == 0) {
-      System.out.println("単価：設定なし");
-    } else {
-      System.out.println("単価：" + this.unitPrice);
-    }
-
-    if (this.loadFare == 0) {
-      System.out.println("送料：未計算");
-    } else {
-      System.out.println("送料：" + this.loadFare);
-    }
-
-    if (this.address.equals("none")) {
-      System.out.println("住所：設定なし");
-    } else {
-      System.out.println("住所：" + this.address);
-    }
-
-    if (this.slipNo.equals("none")) {
-      System.out.println("伝票：未発行");
-    } else {
-      System.out.println("伝票：No" + this.slipNo);
-    }
+    System.out.println("品名: " + display[0]);
+    System.out.println("数量: " + display[1]);
+    System.out.println("単価: " + display[2]);
+    System.out.println("運賃: " + display[3]);
+    System.out.println("発送: " + display[4]);
+    System.out.println("伝票: " + display[5]);
   }
 
   public String getGoods() {
@@ -137,12 +117,7 @@ public class Order {
   }
 
   public String getSlipNo() {
-    if (this.slipNo.equals("none")) {
-      System.out.println("発送されていません");
-      return "none";
-    } else {
-      return this.slipNo;
-    }
+    return this.slipNo;
   }
 
   public void setGoods(String goods) {
@@ -163,5 +138,9 @@ public class Order {
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public void setSlipNo(String slipNo) {
+    this.slipNo = slipNo;
   }
 }
