@@ -11,7 +11,7 @@ public class LectureTwo {
     Order suika = new Order("すいか", 5);
     suika.calcFare();
     suika.setUnitPrice(100);
-    suika.calcFare();
+    System.out.println(tokyo.calcFare(suika).getLoadFare());
 
     ex3();
     Order negi = new Order("ねぎ", 8, 80);

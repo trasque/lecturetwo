@@ -5,6 +5,7 @@ public class Order {
   //      商品    : String goods       : "none"
   //      数量    : int    quantity    : 0
   //      単価    : int    unitPrice   : 0
+  //      送料    : int    loadFare    : 0
   //      発送先  : String address     : "none"
   //      発送伝票: String slipNo      : "none"
   //    コンストラクタ
@@ -25,6 +26,7 @@ public class Order {
   private String goods;
   private int quantity;
   private int unitPrice;
+  private int loadFare;
   private String address;
   private String slipNo;
 
@@ -50,6 +52,30 @@ public class Order {
     this.unitPrice = unitPrice;
     this.address = address;
     this.slipNo = "none";
+  }
+
+  // 発送可能な状態かを返す
+  public boolean canShipped() {
+    if (!this.goods.   equals ("none") &&
+        this.quantity  !=       0      &&
+        this.unitPrice !=       0      &&
+        !this.address. equals ("none")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // 発送が可能な状態なら伝票番号を発行する
+  public void ship() {
+    if (this.canShipped() == true) {
+      Order.slip++;
+      this.slipNo = Order.slip;
+      System.out.println(/* this.calcFare() + */ "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
+    } else {
+      System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
+      this.displayInfo();
+    }
   }
 
   // 設定されている情報を整理して出す
@@ -136,6 +162,10 @@ public class Order {
     return this.unitPrice;
   }
 
+  public int getLoadFare() {
+    return this.loadFare;
+  }
+
   public String getAddress() {
     return this.address;
   }
@@ -159,6 +189,10 @@ public class Order {
 
   public void setUnitPrice(int unitPrice) {
     this.unitPrice = unitPrice;
+  }
+
+  public void setLoadFare(int loadFare) {
+    this.loadFare = loadFare;
   }
 
   public void setAddress(String address) {
