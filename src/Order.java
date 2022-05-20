@@ -54,30 +54,6 @@ public class Order {
     this.slipNo = "none";
   }
 
-  // 発送可能な状態かを返す
-  public boolean canShipped() {
-    if (!this.goods.   equals ("none") &&
-        this.quantity  !=       0      &&
-        this.unitPrice !=       0      &&
-        !this.address. equals ("none")) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  // 発送が可能な状態なら伝票番号を発行する
-  public void ship() {
-    if (this.canShipped() == true) {
-      Order.slip++;
-      this.slipNo = Order.slip;
-      System.out.println(/* this.calcFare() + */ "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
-    } else {
-      System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
-      this.displayInfo();
-    }
-  }
-
   // 設定されている情報を整理して出す
   public void displayInfo() {
     if (this.goods.equals("none")) {
@@ -134,9 +110,8 @@ public class Order {
         this.unitPrice !=       0      &&
         !this.address. equals ("none")) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   // 発送が可能な状態なら伝票番号を発行する
