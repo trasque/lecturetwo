@@ -41,6 +41,11 @@ public class AppController {
         case 5 -> {
           shipment();
         }
+        case 6 -> {
+          for (Order shippingItem: orderList) {
+            shippingItem.ship();
+          }
+        }
         default -> {
           mainMenuNumber = 0;
         }

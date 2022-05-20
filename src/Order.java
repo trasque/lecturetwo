@@ -126,7 +126,10 @@ public class Order {
       System.out.print(">> 発送先を設定 -> ");
       settingString = settingStringScanner.nextLine();
     }
-    if (this.quantity != 0 && this.unitPrice != 0 && !this.address.equals("none")) {
+    if (this.quantity != 0 &&
+        this.unitPrice != 0 &&
+        !this.address.equals("none") &&
+        this.slipNo.equals("none")) {
       System.out.print(">> 運賃計算が可能です 計算しますか？(1:する / 0:しない) -> ");
       settingInt = settingIntScanner.nextInt();
       this.loadFare = 999; // 運賃計算メソッドが治るまでコレ
