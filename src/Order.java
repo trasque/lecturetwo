@@ -74,6 +74,8 @@ public class Order {
     if (this.isAveilableShipped() == true) {
       this.slipNo = Slip.genSlipNo();
       System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
+    } else if (!this.slipNo.equals("none")) {
+      System.out.println("伝票: " + this.slipNo + "【出荷済】");
     } else {
       System.out.println("＜＜出荷できません：以下を確認してください＞＞");
       this.displayInfo();
@@ -125,6 +127,7 @@ public class Order {
     if (this.address.equals("none")) {
       System.out.print(">> 発送先を設定 -> ");
       settingString = settingStringScanner.nextLine();
+      this.address = settingString;
     }
     if (this.quantity != 0 &&
         this.unitPrice != 0 &&
