@@ -9,18 +9,17 @@ public class Order {
   //      発送先  : String address     : "none"
   //      発送伝票: String slipNo      : "none"
   //    コンストラクタ
-  //      引数なし: 全てのメンバを初期値とする（slipNo 以外）
+  //      引数なし: 全てのメンバを初期値とする
   //      引数の順は以下の通りとし、足りない分は初期値（slipNo以外）
   //        1) goods
   //        2) quantity
   //        3) unitPrice
   //        4) address
   //    メソッド
-  //      getter/setter : それぞれ用意
-  //      displayInfo   : 現在設定されている内容をきれいに表示する
-  //      calcFare      : 運賃を計算する（数量 x 単価）
-  //      canShipped    : 出荷可能かを判定する
-  //      ship          : 出荷可能なら伝票番号を発行して記録
+  //      public boolean  canShipped    : 出荷可能かを判定する
+  //      public void     ship          : 出荷可能なら伝票番号を発行して記録
+  //      public void     displayInfo   : オーダー情報をきれいに表示する
+  //      public getter/setter          : それぞれ用意
   //::::::::::
 
   private String goods;
@@ -50,8 +49,32 @@ public class Order {
     this.goods = goods;
     this.quantity = quantity;
     this.unitPrice = unitPrice;
+    this.loadFare = 0;
     this.address = address;
     this.slipNo = "none";
+  }
+
+  // 発送可能な状態かを返す
+  public boolean canShipped() {
+    if (!this.goods.   equals ("none") &&
+        this.quantity  !=       0      &&
+        this.unitPrice !=       0      &&
+        this.loadFare  !=       0      &&
+        !this.address. equals ("none")) {
+      return true;
+    }
+    return false;
+  }
+
+  // 発送が可能な状態なら伝票番号を発行する
+  public void ship() {
+    if (this.canShipped() == true) {
+      this.slipNo = Slip.genSlipNo();
+      System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
+    } else {
+      System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
+      this.displayInfo();
+    }
   }
 
   // 設定されている情報を整理して出す
@@ -74,6 +97,12 @@ public class Order {
       System.out.println("単価：" + this.unitPrice);
     }
 
+    if (this.loadFare == 0) {
+      System.out.println("送料：未計算");
+    } else {
+      System.out.println("送料：" + this.loadFare);
+    }
+
     if (this.address.equals("none")) {
       System.out.println("住所：設定なし");
     } else {
@@ -84,44 +113,6 @@ public class Order {
       System.out.println("伝票：未発行");
     } else {
       System.out.println("伝票：No" + this.slipNo);
-    }
-  }
-
-  // 運賃を表示して返す
-  public int calcFare() {
-    if (this.quantity == 0) {
-      System.out.println("数量が設定されていません");
-      return 0;
-    }
-
-    if (this.unitPrice == 0) {
-      System.out.println("単価が設定されていません");
-      return 0;
-    }
-
-    System.out.println("運賃は" + (this.quantity * this.unitPrice) + "円です");
-    return this.quantity * this.unitPrice;
-  }
-
-  // 発送可能な状態かを返す
-  public boolean canShipped() {
-    if (!this.goods.   equals ("none") &&
-        this.quantity  !=       0      &&
-        this.unitPrice !=       0      &&
-        !this.address. equals ("none")) {
-      return true;
-    }
-    return false;
-  }
-
-  // 発送が可能な状態なら伝票番号を発行する
-  public void ship() {
-    if (this.canShipped() == true) {
-      this.slipNo = Slip.genSlipNo();
-      System.out.println(this.calcFare() + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
-    } else {
-      System.out.println("＜＜情報が不足しています：以下を確認してください＞＞");
-      this.displayInfo();
     }
   }
 
