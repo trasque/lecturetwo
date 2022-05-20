@@ -11,11 +11,11 @@ public class LectureTwo {
 
     System.out.println("◆◆みかん◆◆");
     mikan.ship();
-    tokyo.calcFare(mikan);
+    tokyo.calculateFare(mikan);
 
     System.out.println("◆◆さば◆◆");
     saba.ship();
-    hokkaido.calcFare(saba);
+    hokkaido.calculateFare(saba);
     saba.ship();
   }
 }

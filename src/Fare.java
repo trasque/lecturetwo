@@ -10,7 +10,7 @@ public class Fare {
     this.farePerLoad = 200;
   } 
 
-  public Order calcFare(Order order) {
+  public Order calculateFare(Order order) {
     if (!validateOrder(order)) {
       order.setLoadFare(0);
       return order;
