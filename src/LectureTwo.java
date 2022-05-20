@@ -9,7 +9,8 @@ public class LectureTwo {
 
     ex2();
     Order suika = new Order("すいか", 5);
-    suika.calcFare();
+    Fare tokyo = new Fare(1.1, "東京", 200);
+    tokyo.calcFare(suika).getLoadFare();
     suika.setUnitPrice(100);
     System.out.println(tokyo.calcFare(suika).getLoadFare());
 
