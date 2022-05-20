@@ -16,7 +16,7 @@ public class Fare {
       return order;
     }
 
-    order.setLoadFare(Math.round(((this.farePerLoad * order.getQuantity() + order.getUnitPrice()) * consumptionTax)));
+    order.setLoadFare(Math.round(((this.farePerLoad * order.getQuantity() + order.getUnitPrice()) * this.consumptionTax)));
     return order;
   }
 

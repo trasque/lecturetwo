@@ -16,7 +16,7 @@ public class Order {
   //        3) unitPrice
   //        4) address
   //    メソッド
-  //      public boolean  canShipped    : 出荷可能かを判定する
+  //      public boolean  isAveilableShipped    : 出荷可能かを判定する
   //      public void     ship          : 出荷可能なら伝票番号を発行して記録
   //      public void     displayInfo   : オーダー情報をきれいに表示する
   //      public getter/setter          : それぞれ用意
@@ -55,7 +55,7 @@ public class Order {
   }
 
   // 発送可能な状態かを返す
-  public boolean canShipped() {
+  public boolean isAveilableShipped() {
     if (!this.goods.   equals ("none") &&
         this.quantity  !=       0      &&
         this.unitPrice !=       0      &&
@@ -68,7 +68,7 @@ public class Order {
 
   // 発送が可能な状態なら伝票番号を発行する
   public void ship() {
-    if (this.canShipped() == true) {
+    if (this.isAveilableShipped() == true) {
       this.slipNo = Slip.genSlipNo();
       System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
     } else {
