@@ -4,7 +4,7 @@ import java.util.List;
 public class LectureTwo {
   public static void main(String[] args) {
     Order mikan = new Order();
-    Order saba = new Order("さば", 10, 120, "千葉");
+    Order saba = new Order("さば", 7, 120, "千葉");
 
     Fare tokyo = new Fare(1.1, "東京", 200);
     Fare hokkaido = new Fare(1.1, "北海道", 800);
