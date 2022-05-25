@@ -4,12 +4,12 @@ public class Order {
   //::::::::::
   //  受注クラス
   //    メンバ変数（コンストラクタ初期値）
-  //      商品    : String goods       : "none"
-  //      数量    : int    quantity    : 0
-  //      単価    : int    unitPrice   : 0
-  //      送料    : int    loadFare    : 0
-  //      発送先  : String address     : "none"
-  //      発送伝票: String slipNo      : "none"
+  //      商品    : String      goods       : "none"
+  //      数量    : int         quantity    : 0
+  //      単価    : int         unitPrice   : 0
+  //      送料    : BigDecimal  loadFare    : 0
+  //      発送先  : String      address     : "none"
+  //      発送伝票: String      slipNo      : "none"
   //    コンストラクタ
   //      引数なし: 全てのメンバを初期値とする
   //      引数の順は以下の通りとし、足りない分は初期値（slipNo以外）
@@ -27,7 +27,7 @@ public class Order {
   private String goods;
   private int quantity;
   private int unitPrice;
-  private int loadFare;
+  private BigDecimal loadFare;
   private String address;
   private String slipNo;
 
@@ -51,19 +51,18 @@ public class Order {
     this.goods = goods;
     this.quantity = quantity;
     this.unitPrice = unitPrice;
-    this.loadFare = 0;
+    this.loadFare = BigDecimal.valueOf(0);
     this.address = address;
     this.slipNo = "none";
   }
 
   // 発送可能な状態かを返す
   public boolean isAveilableShipped() {
-    if (!this.goods.   equals ("none") &&
-        this.quantity  !=       0      &&
-        this.unitPrice !=       0      &&
-        this.loadFare  !=       0      &&
-        !this.address. equals ("none") &&
-        this.slipNo.   equals ("none")) {
+    if (!this.goods.   equals ("none")                      &&
+        this.quantity  !=       0                           &&
+        this.unitPrice !=       0                           &&
+        this.loadFare.compareTo(BigDecimal.valueOf(0)) != 0 &&
+        !this.address. equals ("none")) {
       return true;
     }
     return false;
@@ -86,12 +85,12 @@ public class Order {
   public void displayInfo() {
     String[] display = {"設定なし", "設定無し", "設定無し", "未計算", "設定無し", "未発行"};
 
-    if (!this.goods.equals("none"))   display[0] = this.goods;
-    if (this.quantity != 0)           display[1] = String.valueOf(this.quantity);
-    if (this.unitPrice != 0)          display[2] = String.valueOf(this.unitPrice);
-    if (this.loadFare != 0)           display[3] = String.valueOf(this.loadFare);
-    if (!this.address.equals("none")) display[4] = this.address;
-    if (!this.slipNo.equals("none"))  display[5] = this.slipNo + "【出荷済】";
+    if (!this.goods.equals("none"))                           display[0] = this.goods;
+    if (this.quantity != 0)                                   display[1] = String.valueOf(this.quantity);
+    if (this.unitPrice != 0)                                  display[2] = String.valueOf(this.unitPrice);
+    if (this.loadFare.compareTo(BigDecimal.valueOf(0)) != 0)  display[3] = String.valueOf(this.loadFare);
+    if (!this.address.equals("none"))                         display[4] = this.address;
+    if (!this.slipNo.equals("none"))                          display[5] = this.slipNo;
 
     System.out.print("品名: " + display[0] + " / ");
     System.out.print("数量: " + display[1] + " / ");
@@ -153,7 +152,7 @@ public class Order {
     return this.unitPrice;
   }
 
-  public int getLoadFare() {
+  public BigDecimal getLoadFare() {
     return this.loadFare;
   }
 
@@ -177,7 +176,7 @@ public class Order {
     this.unitPrice = unitPrice;
   }
 
-  public void setLoadFare(int loadFare) {
+  public void setLoadFare(BigDecimal loadFare) {
     this.loadFare = loadFare;
   }
 

@@ -1,22 +1,28 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;  //BigDecimal.HALF_UP は @Deprecated となっているためこちらを使う
+
 public class Fare {
   // 配送料 = (配送エリア料金 * 個数 + 品物単価) * 消費税
-  private float consumptionTax;
+  private BigDecimal consumptionTax;
   private String deliveryArea;  //将来的に配送エリアクラスから引っ張って farePerLoad を設定するようにする
   private int farePerLoad;      //エリアクラスができるまでは引数を使わず固定値で設定
 
   public Fare(double consumptionTax, String deliveryArea, int farePerLoad) {
-    this.consumptionTax = (float)consumptionTax;
+    this.consumptionTax = BigDecimal.valueOf(consumptionTax);
     this.deliveryArea = deliveryArea;
-    this.farePerLoad = 200;
+    this.farePerLoad = 201;
   } 
 
   public Order calculateFare(Order order) {
     if (!validateOrder(order)) {
-      order.setLoadFare(0);
+      order.setLoadFare(BigDecimal.valueOf(0));
       return order;
     }
 
-    order.setLoadFare(Math.round(((this.farePerLoad * order.getQuantity() + order.getUnitPrice()) * this.consumptionTax)));
+    BigDecimal result = consumptionTax.multiply(
+                        BigDecimal.valueOf(
+                        (this.farePerLoad * order.getQuantity() + order.getUnitPrice())));
+    order.setLoadFare(result.setScale(0, RoundingMode.HALF_UP));
     return order;
   }
 
