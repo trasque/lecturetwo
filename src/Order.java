@@ -135,7 +135,7 @@ public class Order {
         this.slipNo.equals("none")) {
       System.out.print(">> 運賃計算が可能です 計算しますか？(1:する / 0:しない) -> ");
       settingInt = settingIntScanner.nextInt();
-      this.loadFare = (BigDecimal)999; // 運賃計算メソッドが治るまでコレ
+      this.loadFare = BigDecimal.valueOf(999); // 運賃計算メソッドが治るまでコレ
     }
     System.out.println(">> 受注情報入力完了");
     this.displayInfo();
