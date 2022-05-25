@@ -2,6 +2,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Slip {
+  private Slip() {
+  }
+  
   private static int serialNo = 0;
   private static String lastUpdate = "";
   private static final int DEFAULT_BASE_SLIP_NO = 0;
@@ -26,9 +29,5 @@ public class Slip {
       lastUpdate = slipDate;
       serialNo = DEFAULT_BASE_SLIP_NO;
     }
-  }
-
-  // デフォルトコンストラクタを無効化し、インスタンス生成を禁止する。
-  private Slip() {
   }
 }
