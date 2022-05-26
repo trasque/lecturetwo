@@ -19,7 +19,7 @@ public class Order {
   //        3) unitPrice
   //        4) address
   //    メソッド
-  //      public boolean  isAveilableShipped    : 出荷可能かを判定する
+  //      public boolean  isAvailableShipped    : 出荷可能かを判定する
   //      public void     ship          : 出荷可能なら伝票番号を発行して記録
   //      public void     displayInfo   : オーダー情報をきれいに表示する
   //      public getter/setter          : それぞれ用意
