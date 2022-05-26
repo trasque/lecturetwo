@@ -32,10 +32,6 @@ public class Order {
   private String address;
   private String slipNo;
 
-  public Order() {
-    this("none", 0, 0, "none");
-  }
-
   public Order(String goods) {
     this(goods, 0, 0, "none");
   }
@@ -55,6 +51,10 @@ public class Order {
     this.loadFare = BigDecimal.valueOf(0);
     this.address = address;
     this.slipNo = "none";
+  }
+
+  public static Order newOrderWithDefaultValue() {
+    return new Order("none", 0, 0, "none");
   }
 
   // 発送可能な状態かを返す
