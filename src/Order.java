@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class Order {
   //::::::::::
@@ -58,7 +58,7 @@ public class Order {
   }
 
   // 発送可能な状態かを返す
-  public boolean isAveilableShipped() {
+  public boolean isAvailableShipped() {
     if (!this.goods.   equals ("none")                      &&
         this.quantity  !=       0                           &&
         this.unitPrice !=       0                           &&
@@ -71,7 +71,7 @@ public class Order {
 
   // 発送が可能な状態なら伝票番号を発行する
   public void ship() {
-    if (this.isAveilableShipped() == true) {
+    if (this.isAvailableShipped()) {
       this.slipNo = Slip.genSlipNo();
       System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
     } else if (!this.slipNo.equals("none")) {
