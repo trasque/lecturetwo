@@ -7,16 +7,14 @@ public class AppController {
   private AppController() {
   }
 
-  public static boolean mainMenu() {
+  public static void mainMenu() {
     Scanner mainMenuScanner = new Scanner(System.in);
-    int mainMenuNumber = 1;
-    boolean mainMenuStatus = true;
-
-    while (mainMenuNumber != 0) {
+    boolean isProcessing = true;
+    while (isProcessing) {
       System.out.println("\n[[メインメニュー]]");
       System.out.println("1. データ読込 / 2. 件数表示 / 3. 情報入力 / 4. 情報一覧 / 5. 個別発送 / 6. 一括発送 / 0. 終了");
       System.out.print(">> 受注プログラム機能を選択 -> ");
-      mainMenuNumber = mainMenuScanner.nextInt();
+      int mainMenuNumber = mainMenuScanner.nextInt();
 
       switch (mainMenuNumber) {
         case 1 -> {
@@ -40,22 +38,20 @@ public class AppController {
             shippingItem.ship();
           }
         }
+        case 0 -> {
+          isProcessing = false;
+        }
         default -> {
-          mainMenuNumber = 0;
+          // do nothing. back to menu
         }
       }
     }
-
-    if (mainMenuNumber == 0) mainMenuStatus = true;
-    else mainMenuStatus = false;
-    return mainMenuStatus;
   }
 
   private static void orderInput() {
     Scanner orderInputScanner = new Scanner(System.in);
-    int itemNo = 0;
     System.out.print(">> 入力したい品物の番号 -> ");
-    itemNo = orderInputScanner.nextInt();
+    int itemNo = orderInputScanner.nextInt();
     orderList.get(itemNo).setOrderInfo();
   }
 
@@ -70,9 +66,8 @@ public class AppController {
 
   private static void shipment() {
     Scanner shipmentScanner = new Scanner(System.in);
-    int itemNo = 0;
     System.out.print(">> 発送したい品物の番号 -> ");
-    itemNo = shipmentScanner.nextInt();
+    int itemNo  = shipmentScanner.nextInt();
     orderList.get(itemNo).ship();
   }
 }
