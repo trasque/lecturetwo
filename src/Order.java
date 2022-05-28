@@ -10,10 +10,10 @@ public class Order {
   //      単価    : int         unitPrice   : 0
   //      送料    : BigDecimal  loadFare    : 0
   //      発送先  : String      address     : "none"
-  //      発送伝票: String      shipNo      : "none"
+  //      発送伝票: String      slipNo      : "none"
   //    コンストラクタ
   //      引数なし: 全てのメンバを初期値とする
-  //      引数の順は以下の通りとし、足りない分は初期値（shipNo以外）
+  //      引数の順は以下の通りとし、足りない分は初期値（slipNo以外）
   //        1) goods
   //        2) quantity
   //        3) unitPrice
@@ -30,7 +30,7 @@ public class Order {
   private int unitPrice;
   private BigDecimal loadFare;
   private String address;
-  private String shipNo;
+  private String slipNo;
 
   public Order(String goods) {
     this(goods, 0, 0, "none");
@@ -50,7 +50,7 @@ public class Order {
     this.unitPrice = unitPrice;
     this.loadFare = BigDecimal.valueOf(0);
     this.address = address;
-    this.shipNo = "none";
+    this.slipNo = "none";
   }
 
   public static Order newOrderWithDefaultValue() {
@@ -72,10 +72,10 @@ public class Order {
   // 発送が可能な状態なら伝票番号を発行する
   public void ship() {
     if (this.isAvailableShipped()) {
-      this.shipNo = Ship.genShipNo();
-      System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.shipNo + "です");
-    } else if (!this.shipNo.equals("none")) {
-      System.out.println("伝票: " + this.shipNo + "【出荷済】");
+      if (this.slipNo.equals("none")) this.slipNo = Ship.genSlipNo();
+      System.out.println(this.loadFare + "円で発送しました!" + this.goods + "の伝票番号は:No" + this.slipNo + "です");
+    } else if (!this.slipNo.equals("none")) {
+      System.out.println("伝票: " + this.slipNo + "【出荷済】");
     } else {
       System.out.println("＜＜出荷できません：以下を確認してください＞＞");
       this.displayInfo();
@@ -91,7 +91,7 @@ public class Order {
     if (this.unitPrice != 0)                                  display[2] = String.valueOf(this.unitPrice);
     if (this.loadFare.compareTo(BigDecimal.valueOf(0)) != 0)  display[3] = String.valueOf(this.loadFare);
     if (!this.address.equals("none"))                         display[4] = this.address;
-    if (!this.shipNo.equals("none"))                          display[5] = this.shipNo;
+    if (!this.slipNo.equals("none"))                          display[5] = this.slipNo;
 
     System.out.print("品名: " + display[0] + " / ");
     System.out.print("数量: " + display[1] + " / ");
@@ -106,7 +106,7 @@ public class Order {
     Scanner settingIntScanner = new Scanner(System.in);
     Scanner settingStringScanner = new Scanner(System.in);
     int settingInt = 0;
-    String settingString = "none";
+    String settingString;
 
     this.displayInfo();
     if (this.goods.equals("none")) {
@@ -132,10 +132,10 @@ public class Order {
     if (this.quantity != 0 &&
         this.unitPrice != 0 &&
         !this.address.equals("none") &&
-        this.shipNo.equals("none")) {
+        this.slipNo.equals("none")) {
       System.out.print(">> 運賃計算が可能です 計算しますか？(1:する / 0:しない) -> ");
       settingInt = settingIntScanner.nextInt();
-      this.loadFare = BigDecimal.valueOf(999); // 運賃計算メソッドが治るまでコレ
+      if (settingInt == 1) this.loadFare = BigDecimal.valueOf(999); // 運賃計算メソッドが治るまでコレ
     }
     System.out.println(">> 受注情報入力完了");
     this.displayInfo();
@@ -161,8 +161,8 @@ public class Order {
     return this.address;
   }
 
-  public String getShipNo() {
-    return this.shipNo;
+  public String getSlipNo() {
+    return this.slipNo;
   }
 
   public void setGoods(String goods) {
@@ -185,7 +185,7 @@ public class Order {
     this.address = address;
   }
 
-  public void setShipNo(String shipNo) {
-    this.shipNo = shipNo;
+  public void setSlipNo(String slipNo) {
+    this.slipNo = slipNo;
   }
 }
